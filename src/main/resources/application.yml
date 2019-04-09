@@ -1,0 +1,17 @@
+server:
+  port: 9001
+
+cloud:
+  aws:
+    stack:
+      auto: false
+    end-point:
+      uri:
+    region:
+      static:
+      auto: false
+    credentials:
+      access-key:
+      secret-key: 
+      instance-profile: false
+
