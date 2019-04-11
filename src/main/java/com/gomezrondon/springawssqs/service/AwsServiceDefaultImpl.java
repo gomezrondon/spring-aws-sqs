@@ -41,9 +41,8 @@ public class AwsServiceDefaultImpl implements AwsService{
 
     @Override
     public void uploadFileToS3(String s3Name,String fileName) throws IOException {
-        String s3Url="https://s3.amazonaws.com/"+s3Name;
         File file = new File(fileName);
-
+        String s3Url = "s3://" + s3Name + "/" + fileName;
         Log.info("s3Url: "+s3Url);
 
         WritableResource resource = (WritableResource) resourceLoader.getResource(s3Url);
