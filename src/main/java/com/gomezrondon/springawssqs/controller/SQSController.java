@@ -37,7 +37,6 @@ public class SQSController {
     @GetMapping
     public String sendMessage(){
         String time = LocalDateTime.now().toString();
-
         queueMessagingTemplate.send(sqsEndPoint, MessageBuilder.withPayload("Hola, son las: "+time).build());
         return "Message sent At "+time;
     }
@@ -53,7 +52,6 @@ public class SQSController {
         try {
             awsService.downloadS3Object(s3Name,fileName );
             Log.info("S3 Objedct: "+ fileName +" was downloaded");
-
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -28,8 +28,7 @@ public class AwsServiceDefaultImpl implements AwsService{
 
     @Override
     public void downloadS3Object(String s3Name,String fileName) throws IOException {
-        String s3Url="https://s3.amazonaws.com/"+s3Name+"/"+fileName;
-
+        String s3Url = "s3://" + s3Name + "/" + fileName;
         Resource resource = resourceLoader.getResource(s3Url);
         File downloadedS3Object = new File(resource.getFilename());
 
@@ -50,6 +49,5 @@ public class AwsServiceDefaultImpl implements AwsService{
             Files.copy(file.toPath(), outputStream);
         }
     }
-
 
 }

@@ -10,8 +10,3 @@ cloud:
     region:
       static:
       auto: false
-    credentials:
-      access-key:
-      secret-key: 
-      instance-profile: false
-
