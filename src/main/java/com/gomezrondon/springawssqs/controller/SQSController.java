@@ -38,7 +38,7 @@ public class SQSController {
 
     @SqsListener("spring-boot-sqs")
     public void listen(String message) {
-        Log.info("Message from SQS is"+ message);
+        Log.info("Message from SQS is: "+ message);
     }
 
 }
