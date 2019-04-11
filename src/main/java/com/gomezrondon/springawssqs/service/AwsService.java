@@ -7,6 +7,6 @@ public interface AwsService {
 
     void downloadS3Object(String s3Name,String fileName) throws IOException;
 
-    void uploadFileToS3(File file, String s3Url) throws IOException;
+    void uploadFileToS3(String s3Name,String fileName) throws IOException;
 
 }

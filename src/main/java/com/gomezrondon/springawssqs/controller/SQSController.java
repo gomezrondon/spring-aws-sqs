@@ -47,7 +47,7 @@ public class SQSController {
         Log.info("Message from SQS is: "+ message);
     }
 
-    @GetMapping("/s3/{s3Name}/{fileName}")
+    @GetMapping("/s3/down/{s3Name}/{fileName}")
     public String donwloadS3Object(@PathVariable("s3Name") final String s3Name,
                                  @PathVariable("fileName") final String fileName){
         try {
@@ -60,5 +60,17 @@ public class SQSController {
         return "S3 Object: "+ fileName +" was downloaded";
     }
 
+    @GetMapping("/s3/up/{s3Name}/{fileName}")
+    public String uploadS3Object(@PathVariable("s3Name") final String s3Name,
+                                   @PathVariable("fileName") final String fileName){
+        try {
+            awsService.uploadFileToS3(s3Name,fileName );
+            Log.info("S3 Objedct: "+ fileName +" was Uploaded");
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "S3 Object: "+ fileName +" was Uploaded";
+    }
 
 }

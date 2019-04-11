@@ -1,5 +1,8 @@
 package com.gomezrondon.springawssqs.service;
 
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.io.WritableResource;
@@ -15,7 +18,7 @@ import java.nio.file.StandardCopyOption;
 @Service
 public class AwsServiceDefaultImpl implements AwsService{
 
-
+    private static Logger Log = LoggerFactory.getLogger((AwsServiceDefaultImpl.class));
     private final ResourceLoader resourceLoader;
 
     public AwsServiceDefaultImpl(ResourceLoader resourceLoader) {
@@ -25,7 +28,7 @@ public class AwsServiceDefaultImpl implements AwsService{
 
     @Override
     public void downloadS3Object(String s3Name,String fileName) throws IOException {
-        String s3Url="https://s3-us-west-2.amazonaws.com/"+s3Name+"/"+fileName;
+        String s3Url="https://s3.amazonaws.com/"+s3Name+"/"+fileName;
 
         Resource resource = resourceLoader.getResource(s3Url);
         File downloadedS3Object = new File(resource.getFilename());
@@ -36,7 +39,13 @@ public class AwsServiceDefaultImpl implements AwsService{
         }
     }
 
-    public void uploadFileToS3(File file, String s3Url) throws IOException {
+    @Override
+    public void uploadFileToS3(String s3Name,String fileName) throws IOException {
+        String s3Url="https://s3.amazonaws.com/"+s3Name;
+        File file = new File(fileName);
+
+        Log.info("s3Url: "+s3Url);
+
         WritableResource resource = (WritableResource) resourceLoader.getResource(s3Url);
         try (OutputStream outputStream = resource.getOutputStream()) {
             Files.copy(file.toPath(), outputStream);
