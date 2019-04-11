@@ -5,8 +5,6 @@ cloud:
   aws:
     stack:
       auto: false
-    end-point:
-      uri:
     region:
       static:
       auto: false
