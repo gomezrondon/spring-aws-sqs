@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 public class SQSController {
 
     private static Logger Log = LoggerFactory.getLogger((SQSController.class));
-    private static final String QUEUE_NAME = "***********";
+    private static final String QUEUE_NAME = "spring-boot-sqs";
     private final QueueMessagingTemplate queueMessagingTemplate;
 
 
@@ -33,11 +33,11 @@ public class SQSController {
         this.awsService = awsService;
     }
 
-    @GetMapping
-    public String sendMessage(){
+    @GetMapping("/sqs/{message}")
+    public String sendMessage(@PathVariable("message") final String message){
         String time = LocalDateTime.now().toString();
-        queueMessagingTemplate.send(QUEUE_NAME, MessageBuilder.withPayload("Hola, son las: "+time).build());
-        return "Message sent At "+time;
+        queueMessagingTemplate.send(QUEUE_NAME, MessageBuilder.withPayload(message+": "+time).build());
+        return "Message "+message+" sent At "+time;
     }
 
     @SqsListener(QUEUE_NAME)
