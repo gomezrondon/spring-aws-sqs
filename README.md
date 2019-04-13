@@ -63,3 +63,17 @@ to upload a file to a bucket
 http://localhost:9001/aws/s3/up/<bucket name>/<file name>
 ```
 
+## To execute as a docker container
+1) compile the application
+```
+./gradlew clean build -x Test unzip
+```
+2) create/run the container with a docker compose file:
+```
+docker-compose up -d
+```
+
+to stop the running container
+```
+docker-compose down
+```

@@ -21,7 +21,7 @@ import java.time.LocalDateTime;
 public class SQSController {
 
     private static Logger Log = LoggerFactory.getLogger((SQSController.class));
-    private static final String QUEUE_NAME = "spring-boot-sqs";
+    private static final String QUEUE_NAME = "********";
     private final QueueMessagingTemplate queueMessagingTemplate;
 
 

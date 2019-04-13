@@ -1,0 +1,10 @@
+version: '2.1'
+
+services:
+  app:
+    build: .
+    container_name: spring-aws-sqs
+    environment:
+      CLOUD_AWS_REGION_STATIC: ******
+    ports:
+      - 9001:9001

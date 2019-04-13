@@ -6,7 +6,7 @@ plugins {
 apply plugin: 'io.spring.dependency-management'
 
 group = 'com.gomezrondon'
-version = '0.0.1-SNAPSHOT'
+//version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
 repositories {
@@ -27,4 +27,16 @@ dependencyManagement {
 	imports {
 		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
 	}
+}
+
+
+task unzip(type: Copy) {
+
+	def zipPath = "${buildDir}/libs/${rootProject.name}.jar"
+	println zipPath
+	def zipFile = file(zipPath)
+	def outputDir = file("${buildDir}/libs")
+
+	from zipTree(zipFile)
+	into outputDir
 }
