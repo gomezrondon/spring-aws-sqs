@@ -6,5 +6,10 @@ cloud:
     stack:
       auto: false
     region:
-      static:
+      static: <reagion>
       auto: false
+    end-point:
+      uri: <url of the queue>
+    credentials:
+      access-key: <access-key>
+      secret-key: <secret-key>

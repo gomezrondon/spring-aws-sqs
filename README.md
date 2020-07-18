@@ -4,6 +4,7 @@ an AWS S3/SQS hello world implemented with Spring boot Cloud
 1) You need to configure your AWS CLI credentials so the application will pick them up from it.
 1.1) set the region
 ```
+cloud:
   aws:
     stack:
       auto: false
@@ -11,7 +12,25 @@ an AWS S3/SQS hello world implemented with Spring boot Cloud
       static: <the bucket reagion>
       auto: false
 ```
-
+1.2) or create an user and grant access to the sqs (you need to get the credentials) 
+```
+cloud:
+  aws:
+    stack:
+      auto: false
+    region:
+      static: <reagion>
+      auto: false
+    end-point:
+      uri: <url of the queue>
+    credentials:
+      access-key: <access-key>
+      secret-key: <secret-key>
+```
+1.3) you would need to set the name of the queue is you want to use the SQSListener
+```
+private static final String QUEUE_NAME = "********";
+```
 2) You need to configure a S3 policy and assign it to the user you are using to execute the application.
 
 ```

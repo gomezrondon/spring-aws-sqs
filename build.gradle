@@ -1,12 +1,11 @@
 plugins {
-	id 'org.springframework.boot' version '2.1.4.RELEASE'
+	id 'org.springframework.boot' version '2.3.1.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
 }
 
-apply plugin: 'io.spring.dependency-management'
-
 group = 'com.gomezrondon'
-//version = '0.0.1-SNAPSHOT'
+version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
 repositories {
@@ -14,13 +13,16 @@ repositories {
 }
 
 ext {
-	set('springCloudVersion', 'Greenwich.SR1')
+	set('springCloudVersion', "Hoxton.SR6")
 }
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.cloud:spring-cloud-starter-aws'
 	implementation 'org.springframework.cloud:spring-cloud-starter-aws-messaging'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
 }
 
 dependencyManagement {
@@ -29,14 +31,6 @@ dependencyManagement {
 	}
 }
 
-
-task unzip(type: Copy) {
-
-	def zipPath = "${buildDir}/libs/${rootProject.name}.jar"
-	println zipPath
-	def zipFile = file(zipPath)
-	def outputDir = file("${buildDir}/libs")
-
-	from zipTree(zipFile)
-	into outputDir
+test {
+	useJUnitPlatform()
 }
