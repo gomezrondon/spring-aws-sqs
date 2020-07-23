@@ -9,18 +9,19 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.aws.messaging.core.QueueMessagingTemplate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 
 
 @Configuration
 public class SQSConfig {
 
-    @Value("$cloud.aws.region.static")
+    @Value("${cloud.aws.region.static}")
     private String region;
 
-    @Value("$cloud.aws.credentials.access-key")
+    @Value("${cloud.aws.credentials.access-key}")
     private String awsAccessKey;
 
-    @Value("$cloud.aws.credentials.secret-key")
+    @Value("${cloud.aws.credentials.secret-key}")
     private String awsSecretKey;
 
     @Bean
@@ -28,6 +29,8 @@ public class SQSConfig {
         return new QueueMessagingTemplate(getAmazonSQSAsync());
     }
 
+    @Bean
+    @Primary
      public AmazonSQSAsync getAmazonSQSAsync() {
         return AmazonSQSAsyncClientBuilder.standard().withRegion(region)
                 .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(awsAccessKey, awsSecretKey)))
