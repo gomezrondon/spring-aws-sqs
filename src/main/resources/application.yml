@@ -1,15 +1,17 @@
 server:
-  port: 9001
+  port: ${SERVER_PORT:9001}
 
 cloud:
   aws:
     stack:
       auto: false
     region:
-      static: <reagion>
+      static: ${CLOUD_AWS_REGION_STATIC}
       auto: false
     end-point:
-      uri: <url of the queue>
+      uri: ${CLOUD_AWS_END_POINT_URI}
     credentials:
-      access-key: <access-key>
-      secret-key: <secret-key>
+      use-default-aws-credentials-chain: false
+      instance-profile: false
+      access-key: ${AWS_ACCESS_KEY_ID}
+      secret-key: ${AWS_SECRET_ACCESS_KEY}
