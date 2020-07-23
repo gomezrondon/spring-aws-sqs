@@ -82,14 +82,20 @@ to upload a file to a bucket
 http://localhost:9001/aws/s3/up/<bucket name>/<file name>
 ```
 
-## To execute as a docker container
+## To execute as a docker container with Spring boot 2.3.1
 1) compile the application
 ```
-./gradlew clean build -x Test unzip
+./gradlew clean build -x Test
 ```
-2) create/run the container with a docker compose file:
+2) Add in the gradle build file 
 ```
-docker-compose up -d
+bootJar{
+	layered()
+}
+```
+3) execute this command to create the image:
+```
+./gradlew bootBuildImage
 ```
 
 to stop the running container

@@ -2,3 +2,8 @@ GET http://localhost:9001/aws/sqs/{message}
 Accept: application/json
 
 ###
+
+GET http://localhost:9001/aws/s3/down/{s3Name}/{fileName}
+Accept: application/json
+
+###

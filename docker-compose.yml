@@ -2,9 +2,13 @@ version: '2.1'
 
 services:
   app:
-    build: .
+    image: spring-aws-sqs:0.0.1-SNAPSHOT
     container_name: spring-aws-sqs
-    environment:
-      CLOUD_AWS_REGION_STATIC: ******
     ports:
       - 9001:9001
+    environment:
+      SERVER_PORT: 9001
+      CLOUD_AWS_REGION_STATIC:
+      CLOUD_AWS_END_POINT_URI:
+      AWS_ACCESS_KEY_ID:
+      AWS_SECRET_ACCESS_KEY:

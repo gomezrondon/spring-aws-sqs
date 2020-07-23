@@ -34,3 +34,8 @@ dependencyManagement {
 test {
 	useJUnitPlatform()
 }
+
+bootJar{
+	layered()
+}
+

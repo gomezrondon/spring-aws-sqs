@@ -1,10 +1,9 @@
 package com.gomezrondon.springawssqs.controller;
 
-import com.amazonaws.services.sqs.AmazonSQSAsync;
 import com.gomezrondon.springawssqs.service.AwsService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.aws.messaging.core.QueueMessagingTemplate;
 import org.springframework.cloud.aws.messaging.listener.annotation.SqsListener;
 import org.springframework.messaging.support.MessageBuilder;
@@ -12,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -21,15 +21,16 @@ import java.time.LocalDateTime;
 public class SQSController {
 
     private static Logger Log = LoggerFactory.getLogger((SQSController.class));
-    private static final String QUEUE_NAME = "********";
-    private final QueueMessagingTemplate queueMessagingTemplate;
+    private static final String QUEUE_NAME = "spring-sqs-test";
+
+    @Autowired
+    private QueueMessagingTemplate queueMessagingTemplate;
 
 
 
     private final AwsService awsService;
 
-    public SQSController(AmazonSQSAsync amazonSQSAsync, AwsService awsService) {
-        this.queueMessagingTemplate = new QueueMessagingTemplate(amazonSQSAsync);
+    public SQSController(AwsService awsService) {
         this.awsService = awsService;
     }
 
