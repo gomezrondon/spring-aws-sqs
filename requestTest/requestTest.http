@@ -1,0 +1,10 @@
+### send a message
+GET http://localhost:8080/aws/sqs/<message>
+
+
+### download a file
+GET http://localhost:8080/aws/s3/down/<bucket>/<file>
+
+
+### upload a file
+GET http://localhost:8080/aws/s3/up/<bucket>/<file>
