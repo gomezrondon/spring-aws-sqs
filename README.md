@@ -13,6 +13,7 @@ cloud:
       auto: false
 ```
 1.2) or create an user and grant access to the sqs (you need to get the credentials) 
+1.3) you need to create an user and assign "AmazonSQSFullAccess" access.
 ```
 cloud:
   aws:
